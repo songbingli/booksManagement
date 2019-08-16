@@ -1,0 +1,57 @@
+{% extends "bookMS/base.html" %}
+
+{% block mainbody %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>借阅时间</th>
+                <th>图书名称</th>
+                <th>借阅状态</th>
+                <th>应还时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vo in borrowsList %}
+            <tr>
+                <td>{{ vo.borrow_time }}</td>
+                <td >{{ vo.book_id.book_name }}</td>
+                <td>{% if vo.borrow_status == 1 %}已归还{% else %}<strong>借阅中</strong>{% endif %}</td>
+                <td>{{ vo.return_time|date:'Y-m-d H:i:s' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>                
+    <div class="pagination">
+        <ul>
+            {% if borrowsList.has_previous %}
+                <li>
+                    <a href="{% url 'bookMS:bookMS_borrows_his' borrowsList.previous_page_number %}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for index in borrowsList.paginator.page_range %}
+                {% if index == borrowsList.number %}
+                    <li class="disabled">
+                        <a href="{% url 'bookMS:bookMS_borrows_his' index %}">{{ index }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'bookMS:bookMS_borrows_his' index %}">{{ index }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if borrowsList.has_next %}
+                <li>
+                    <a href="{% url 'bookMS:bookMS_borrows_his' borrowsList.next_page_number %}">&raquo;</a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

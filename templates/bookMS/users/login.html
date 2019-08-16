@@ -1,0 +1,32 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>用户登陆</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static 'bookMS/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bookMS/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bookMS/css/site.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="login-page" class="container">
+            <h1>图书管理系统登陆</h1>
+            <form id="login-form" method="post" class="well" action="{% url 'bookMS:bookMS_do_login' %}">
+                {% csrf_token %}
+                账  &nbsp; 号：<input type="text" name="user_mobile" class="span2" placeholder="输入手机号" /><br />
+                密  &nbsp; 码：<input type="password" name="user_password" class="span2" placeholder="输入密码" /><br />
+                验证码：<input type="text" name="code" class="span2" style="width:50px;height: 20px"  />
+                <img src="{% url 'bookMS:bookMS_verify'%}" onclick="this.src='{% url 'bookMS:bookMS_verify' %}?sn='+Math.random()"/>
+                <br />
+                <button type="submit" class="btn btn-primary">登录</button>
+                <button type="button" class="btn" onclick="window.location.href='{% url 'bookMS:bookMS_register' %}'">注册</button>
+            </form>
+        <br/>
+        <span style="color:red">{{ info }}</span>
+        </div>
+        <script src="{% static 'bookMS/js/jquery.min.js' %}"></script>
+        <script src="{% static 'bookMS/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'bookMS/js/site.js' %}"></script>
+    </body>
+</html>
