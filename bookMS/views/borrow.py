@@ -46,7 +46,7 @@ def his(request, pid):
     :param pid:
     :return:
     """
-    borrows = Borrows.objects.filter(user_id=request.session['user_id'])
+    borrows = Borrows.objects.filter(user_id=request.session['user_id']).order_by('id')
     borrows = page(request, borrows, pid)
     context = {"borrowsList": borrows}
     return render(request, 'bookMS/borrows/his.html', context)

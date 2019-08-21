@@ -12,7 +12,7 @@ def index(request, pid):
     :param pid: 页码
     :return:图书列表
     """
-    books = Books.objects.filter(book_status=0)
+    books = Books.objects.filter(book_status=0).order_by('id')
     books = page(request, books, pid)
     context = {"booksList": books}
     return render(request, 'bookMS/books/books.html', context)
@@ -24,7 +24,7 @@ def search(request):
     :return: 匹配到的图书列表
     """
     key_word = request.GET['key_word']
-    books = Books.objects.filter(Q(book_name__contains=key_word) | Q(book_authors__contains=key_word))
+    books = Books.objects.filter(Q(book_name__contains=key_word) | Q(book_authors__contains=key_word)).order_by('id')
     books = page(request, books, 1)
     context = {"booksList": books, "key_word": key_word}
     return render(request, 'bookMS/books/books.html', context)
