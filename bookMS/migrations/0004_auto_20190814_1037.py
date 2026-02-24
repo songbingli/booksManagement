@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_mobile',
             field=models.BigIntegerField(),
         ),

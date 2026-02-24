@@ -31,17 +31,17 @@ class Migration(migrations.Migration):
             field=models.IntegerField(max_length=32),
         ),
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_mobile',
             field=models.IntegerField(max_length=32),
         ),
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_sex',
             field=models.IntegerField(default=32),
         ),
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_state',
             field=models.IntegerField(default=32),
         ),

@@ -26,12 +26,12 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(null=True),
         ),
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_sex',
             field=models.IntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='books',
+            model_name='users',
             name='user_state',
             field=models.IntegerField(default=0),
         ),
